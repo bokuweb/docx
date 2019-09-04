@@ -5,6 +5,7 @@ import { TableGrid } from "./grid";
 import { TableCell, WidthType } from "./table-cell";
 import { TableColumn } from "./table-column";
 import { ITableFloatOptions, TableProperties } from "./table-properties";
+import { TableJustifyContentType } from "./table-properties/table-justify-content";
 import { TableLayoutType } from "./table-properties/table-layout";
 import { TableRow } from "./table-row";
 /*
@@ -32,6 +33,7 @@ export interface ITableOptions {
     };
     readonly float?: ITableFloatOptions;
     readonly layout?: TableLayoutType;
+    readonly justifyContent?: TableJustifyContentType;
 }
 
 export class Table extends XmlComponent {
@@ -47,11 +49,13 @@ export class Table extends XmlComponent {
         margins: { marginUnitType, top, bottom, right, left } = { marginUnitType: WidthType.AUTO, top: 0, bottom: 0, right: 0, left: 0 },
         float,
         layout,
+        justifyContent,
     }: ITableOptions) {
         super("w:tbl");
         this.properties = new TableProperties();
         this.root.push(this.properties);
         this.properties.setBorder();
+        this.properties.setJustifyContent(justifyContent || TableJustifyContentType.LEFT);
         this.properties.setWidth(width, widthUnitType);
         this.properties.CellMargin.addBottomMargin(bottom || 0, marginUnitType);
         this.properties.CellMargin.addTopMargin(top || 0, marginUnitType);

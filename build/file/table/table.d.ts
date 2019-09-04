@@ -2,6 +2,7 @@ import { XmlComponent } from "../../file/xml-components";
 import { TableCell, WidthType } from "./table-cell";
 import { TableColumn } from "./table-column";
 import { ITableFloatOptions } from "./table-properties";
+import { TableJustifyContentType } from "./table-properties/table-justify-content";
 import { TableLayoutType } from "./table-properties/table-layout";
 import { TableRow } from "./table-row";
 export interface ITableOptions {
@@ -19,11 +20,12 @@ export interface ITableOptions {
     };
     readonly float?: ITableFloatOptions;
     readonly layout?: TableLayoutType;
+    readonly justifyContent?: TableJustifyContentType;
 }
 export declare class Table extends XmlComponent {
     private readonly properties;
     private readonly rows;
-    constructor({ rows, columns, width, widthUnitType, columnWidths, margins: { marginUnitType, top, bottom, right, left }, float, layout, }: ITableOptions);
+    constructor({ rows, columns, width, widthUnitType, columnWidths, margins: { marginUnitType, top, bottom, right, left }, float, layout, justifyContent, }: ITableOptions);
     getRow(index: number): TableRow;
     getColumn(index: number): TableColumn;
     getCell(row: number, col: number): TableCell;

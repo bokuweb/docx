@@ -5,6 +5,7 @@ import { WidthType } from "../table-cell";
 import { TableBorders } from "./table-borders";
 import { TableCellMargin } from "./table-cell-margin";
 import { ITableFloatOptions, TableFloatProperties } from "./table-float-properties";
+import { TableJustifyContent, TableJustifyContentType } from "./table-justify-content";
 import { TableLayout, TableLayoutType } from "./table-layout";
 import { PreferredTableWidth } from "./table-width";
 
@@ -21,6 +22,10 @@ export class TableProperties extends IgnoreIfEmptyXmlComponent {
     public setWidth(width: number, type: WidthType = WidthType.AUTO): TableProperties {
         this.root.push(new PreferredTableWidth(type, width));
         return this;
+    }
+
+    public setJustifyContent(value: TableJustifyContentType): void {
+        this.root.push(new TableJustifyContent(value));
     }
 
     public setLayout(type: TableLayoutType): void {
